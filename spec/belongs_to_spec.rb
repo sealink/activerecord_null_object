@@ -6,7 +6,7 @@ describe Comment do
   end
   
   it "should contain a body" do
-    @comment.body.should_not be_empty
+    @comment.body.should == 'The body.'
   end
 
   describe "without an author" do
@@ -41,5 +41,37 @@ describe Comment do
       @comment.author = nil
       @comment.author.name.should be_nil
     end
+  end
+end
+
+describe Post do
+  before(:each) do
+    @post = Post.create!(:body => 'The body.')
+  end
+  
+  it "should contain a body" do
+    @post.body.should == 'The body.'
+  end
+  
+  it "should not have null object support for the author" do
+    @post.author.should be_nil
+    @post.author.kind_of?(Author).should be_false
+    @post.author.respond_to?(:name).should be_false
+  end
+end
+
+describe Session do
+  before(:each) do
+    @session = Session.create!(:description => 'The description.')
+  end
+  
+  it "should contain a description" do
+    @session.description.should == 'The description.'
+  end
+  
+  it "should not have null object support for the author" do
+    @session.author.should be_nil
+    @session.author.kind_of?(Author).should be_false
+    @session.author.respond_to?(:name).should be_false
   end
 end
