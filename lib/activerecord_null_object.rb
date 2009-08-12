@@ -24,7 +24,7 @@ module ActiveRecord
             null_class = Object.const_set(null_class_name, Class.new(association_class))
             null_class.class_eval do
               include Singleton
-              include NullObject
+              include ActiveRecordNullObject::NullObject
             end
           end
 
