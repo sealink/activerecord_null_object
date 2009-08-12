@@ -1,23 +1,25 @@
-require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
+require 'spec'
+require 'spec/rake/spectask'
+require 'init'
 
-desc 'Default: run unit tests.'
-task :default => :test
+desc 'Default: run specs.'
+task :default => :spec
 
-desc 'Test the belongs_to_with_null_object plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
+Spec::Rake::SpecTask.new do |t|
+  t.spec_opts = ['--options', "\"#{File.dirname(__FILE__)}/spec/spec.opts\""]
+  t.spec_files = FileList['spec/**/*_spec.rb']
 end
 
-desc 'Generate documentation for the belongs_to_with_null_object plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'BelongsToWithNullObject'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name = %q{activerecord_null_object}
+    s.summary = %q{Implements the Null Object Pattern for nil values in ActiveRecord associations.}
+    s.email = %q{info@westarete.com}
+    s.homepage = %q{http://github.com/westarete/activerecord_null_object/}
+    s.description = ""
+    s.authors = ["Scott Woods"]
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
