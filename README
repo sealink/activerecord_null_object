@@ -1,13 +1,5 @@
-BelongsToWithNullObject
-=======================
+= ActiveRecordWithNullObject
 
-Introduction goes here.
+Implements the Null Object Pattern for nil values in ActiveRecord associations.
 
-
-Example
-=======
-
-Example goes here.
-
-
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+Copyright (c) 2009 West Arete Computing, Inc., released under the MIT license
