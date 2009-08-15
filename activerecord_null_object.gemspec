@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{activerecord_null_object}
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Scott Woods"]
-  s.date = %q{2009-08-12}
+  s.date = %q{2009-08-15}
   s.description = %q{}
   s.email = %q{info@westarete.com}
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
      "README",
      "Rakefile",
      "VERSION",
+     "activerecord_null_object.gemspec",
      "init.rb",
      "lib/activerecord_null_object.rb",
      "lib/null_object.rb",
