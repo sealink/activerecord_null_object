@@ -8,6 +8,10 @@ module ActiveRecordNullObject
     def nil?
       true
     end
+    
+    def empty?
+      true
+    end
   
     def new_record?
       false

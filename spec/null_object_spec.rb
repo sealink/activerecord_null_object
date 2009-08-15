@@ -18,6 +18,18 @@ describe NullAuthor do
     @null_author.nil?.should be_true
     @null_author.should be_nil
   end
+  
+  it "should be empty" do
+    @null_author.empty?.should be_true
+  end
+  
+  it "should be blank" do
+    @null_author.blank?.should be_true
+  end
+  
+  it "should not be present" do
+    @null_author.present?.should be_false
+  end
 
   describe "#id" do
     it "should return nil" do

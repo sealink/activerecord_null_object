@@ -18,6 +18,14 @@ describe Comment do
       @comment.author.should be_nil
     end
     
+    it "should return true for comment.author.nil?" do
+      @comment.author.nil?.should be_true
+    end
+    
+    it "should return false for comment.author.present?" do
+      @comment.author.present?.should be_false
+    end
+    
     it "should return nil for the author's name" do
       @comment.author.name.should be_nil
     end
@@ -31,6 +39,14 @@ describe Comment do
     it "should return the author object" do
       @comment.author.kind_of?(Author).should be_true
       @comment.author.kind_of?(NullAuthor).should_not be_true
+    end
+    
+    it "should return false for comment.author.nil?" do
+      @comment.author.nil?.should be_false
+    end
+    
+    it "should return true for comment.author.present?" do
+      @comment.author.present?.should be_true
     end
     
     it "should return the author's name" do
