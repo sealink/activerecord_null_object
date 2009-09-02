@@ -13,24 +13,8 @@ module ActiveRecordNullObject
       true
     end
   
-    def new_record?
-      false
-    end
-  
-    def save
-      true
-    end
-  
-    def save!
-      true
-    end
-
-    def update_attributes(attributes)
-      true
-    end
-  
-    def update_attributes!(attributes)
-      true
+    def validate
+      errors.add_to_base("is a null object and can't be saved")
     end
   
   end

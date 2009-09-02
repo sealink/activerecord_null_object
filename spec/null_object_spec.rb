@@ -38,38 +38,55 @@ describe NullAuthor do
   end
   
   describe "#new_record?" do
-    it "should return false" do
-      @null_author.new_record?.should be_false
+    it "should return true" do
+      @null_author.new_record?.should be_true
     end
   end
   
   describe "#save" do
-    it "should return true" do
-      @null_author.save.should be_true
+    it "should return false" do
+      @null_author.save.should be_false
     end
     
     it "should not create a new record" do
       lambda { @null_author.save }.should_not change { NullAuthor.count }
     end
+    
+    it "should add an error" do
+      @null_author.errors.on(:base).should == "is a null object and can't be saved"
+    end
   end
   
   describe "#save!" do
-    it "should return true" do
-      @null_author.save!.should be_true
+    it "should raise an exception" do
+      lambda { @null_author.save! }.should raise_error(ActiveRecord::RecordInvalid)
     end
     
     it "should not create a new record" do
-      lambda { @null_author.save! }.should_not change { NullAuthor.count }
+      lambda { 
+        begin
+          @null_author.save! 
+        rescue ActiveRecord::RecordInvalid
+        end
+      }.should_not change { NullAuthor.count }
+    end
+
+    it "should add an error" do
+      @null_author.errors.on(:base).should == "is a null object and can't be saved"
     end
   end
 
   describe "#update_attributes" do
-    it "should return true" do
-      @null_author.update_attributes({}).should be_true
+    it "should return false" do
+      @null_author.update_attributes({}).should be_false
     end
     
     it "should not create a new record" do
       lambda { @null_author.update_attributes({}) }.should_not change { NullAuthor.count }
+    end
+
+    it "should add an error" do
+      @null_author.errors.on(:base).should == "is a null object and can't be saved"
     end
   end
   
