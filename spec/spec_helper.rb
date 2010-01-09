@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'activerecord'
+require 'active_record'
 require 'yaml'
 require 'spec'
 require File.dirname(__FILE__) + '/../init.rb'
