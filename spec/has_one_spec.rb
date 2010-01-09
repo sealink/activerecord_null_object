@@ -15,7 +15,7 @@ describe Author do
 
   describe "with a profile" do
     before(:each) do
-      @author.profile.create!(:age => 56)
+      @author.create_profile(:age => 56)
     end
     it "should have an age" do
       @author.profile.age.should == 56
@@ -32,7 +32,7 @@ describe Author do
 
   describe "with an account" do
     before(:each) do
-      @author.account.create!(:password => 'secret')
+      @author.create_account(:password => 'secret')
     end
     it "should have an age" do
       @author.account.password.should == 'secret'
@@ -63,7 +63,7 @@ describe Author do
 
   describe "with an address" do
     before(:each) do
-      @author.address.create!(:street => '1600 Pennsylvania Ave')
+      @author.create_address(:street => '1600 Pennsylvania Ave')
     end
 
     it "should return the author object" do
