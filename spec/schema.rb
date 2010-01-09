@@ -8,9 +8,6 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "addresses", :force => true do |t|
     t.integer  "author_id"
     t.string   "street"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -18,8 +15,6 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "profiles", :force => true do |t|
     t.integer  "author_id"
     t.integer  "age"
-    t.string   "gender"
-    t.string   "favorite_color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
