@@ -5,6 +5,13 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
   end
   
+  create_table "accounts", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "addresses", :force => true do |t|
     t.integer  "author_id"
     t.string   "street"
