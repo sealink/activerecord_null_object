@@ -9,6 +9,20 @@ config = YAML::load(File.open(File.dirname(__FILE__) + '/database.yml'))
 ActiveRecord::Base.establish_connection(config['test'])
 load(File.dirname(__FILE__) + "/schema.rb")
 
+# Fixes 'address'.singularize  # => 'addres'
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.singular(/ess$/i, 'ess')
+end
+
+class Account < ActiveRecord::Base
+end
+
+class Address < ActiveRecord::Base
+end
+
+class Profile < ActiveRecord::Base
+end
+
 # Define ActiveRecord classes to use while testing.
 class Author < ActiveRecord::Base
   has_many :posts
@@ -30,3 +44,4 @@ end
 class Session < ActiveRecord::Base
   belongs_to :author
 end
+
