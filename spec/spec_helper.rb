@@ -14,6 +14,8 @@ class Author < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :sessions
+  has_one  :profile
+  has_one  :address, :null_object => true
 end
 
 class Comment < ActiveRecord::Base
