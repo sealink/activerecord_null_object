@@ -1,3 +1,4 @@
 .DS_Store
 test.db
 pkg
+vendor/ruby

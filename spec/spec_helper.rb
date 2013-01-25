@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'active_record'
 require 'yaml'
-require 'spec'
-require File.dirname(__FILE__) + '/../init.rb'
+require 'rspec'
+require File.dirname(__FILE__) + '/../lib/activerecord_null_object.rb'
 
 # Establish database connection.
 config = YAML::load(File.open(File.dirname(__FILE__) + '/database.yml'))

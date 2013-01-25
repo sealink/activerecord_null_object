@@ -1,93 +1,61 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
 describe Comment do
-  before(:each) do
-    @comment = Comment.create!(:body => 'The body.')
-  end
-  
-  it "should contain a body" do
-    @comment.body.should == 'The body.'
-  end
+  subject(:comment) { Comment.create!(:body => 'The body.') }
 
-  describe "without an author" do
-    it "should return a null object for the author" do
-      @comment.author.kind_of?(NullAuthor).should be_true
+  its(:body) { should == 'The body.' }
+
+  context "its author" do
+    subject(:author) { comment.author }
+
+    context "when not present" do
+      it { should be_kind_of NullAuthor }
+      it { should be_nil }
+      it { should_not be_present }
+      its(:name) { should be_nil }
     end
-    
-    it "should be nil" do
-      @comment.author.should be_nil
-    end
-    
-    it "should return true for comment.author.nil?" do
-      @comment.author.nil?.should be_true
-    end
-    
-    it "should return false for comment.author.present?" do
-      @comment.author.present?.should be_false
-    end
-    
-    it "should return nil for the author's name" do
-      @comment.author.name.should be_nil
-    end
-  end
-  
-  describe "with an author" do
-    before(:each) do
-      @comment.author = Author.create!(:name => 'James Baker')
-    end
-    
-    it "should return the author object" do
-      @comment.author.kind_of?(Author).should be_true
-      @comment.author.kind_of?(NullAuthor).should_not be_true
-    end
-    
-    it "should return false for comment.author.nil?" do
-      @comment.author.nil?.should be_false
-    end
-    
-    it "should return true for comment.author.present?" do
-      @comment.author.present?.should be_true
-    end
-    
-    it "should return the author's name" do
-      @comment.author.name.should == 'James Baker'
-    end
-    
-    it "should revert to a null object if assigned nil" do
-      @comment.author = nil
-      @comment.author.name.should be_nil
+
+    context "when present" do
+      before { comment.create_author!(:name => 'James Baker') }
+
+      it { should be_kind_of Author }
+      it { should_not be_kind_of NullAuthor }
+      it { should_not be_nil }
+      it { should be_present }
+      its(:name) { should == 'James Baker' }
+
+      context "when removed" do
+        before { comment.author = nil }
+        its(:name) { should be_nil }
+      end
     end
   end
 end
 
 describe Post do
-  before(:each) do
-    @post = Post.create!(:body => 'The body.')
-  end
-  
-  it "should contain a body" do
-    @post.body.should == 'The body.'
-  end
-  
-  it "should not have null object support for the author" do
-    @post.author.should be_nil
-    @post.author.kind_of?(Author).should be_false
-    @post.author.respond_to?(:name).should be_false
+  subject(:post) { Post.create!(:body => 'The body.') }
+
+  its(:body) { should == 'The body.' }
+
+  context "without null object support for the author" do
+    subject(:author) { post.author }
+
+    it { should be_nil }
+    it { should_not be_kind_of Author }
+    it { should_not respond_to :name }
   end
 end
 
 describe Session do
-  before(:each) do
-    @session = Session.create!(:description => 'The description.')
-  end
-  
-  it "should contain a description" do
-    @session.description.should == 'The description.'
-  end
-  
-  it "should not have null object support for the author" do
-    @session.author.should be_nil
-    @session.author.kind_of?(Author).should be_false
-    @session.author.respond_to?(:name).should be_false
+  subject(:session) { Session.create!(:description => 'The description.') }
+
+  its(:description) { should == 'The description.' }
+
+  context "without null object support for the author" do
+    subject(:author) { session.author }
+
+    it { should be_nil }
+    it { should_not be_kind_of Author }
+    it { should_not respond_to :name }
   end
 end

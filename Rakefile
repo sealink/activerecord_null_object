@@ -18,7 +18,7 @@ begin
     s.email = %q{info@westarete.com}
     s.homepage = %q{http://github.com/westarete/activerecord_null_object/}
     s.description = ""
-    s.authors = ["Scott Woods"]
+    s.authors = ["Scott Woods", "Alessandro Berardi"]
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
