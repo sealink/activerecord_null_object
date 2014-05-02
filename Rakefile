@@ -1,25 +1,18 @@
-require 'spec'
-require 'spec/rake/spectask'
-require 'init'
+require "bundler/gem_tasks"
 
 desc 'Default: run specs.'
 task :default => :spec
 
-Spec::Rake::SpecTask.new do |t|
-  t.spec_opts = ['--options', "\"#{File.dirname(__FILE__)}/spec/spec.opts\""]
-  t.spec_files = FileList['spec/**/*_spec.rb']
+require 'rspec/core/rake_task'
+
+desc "Run specs"
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = "./spec/**/*_spec.rb" # don't need this, it's default.
+  # Put spec opts in a file named .rspec in root
 end
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |s|
-    s.name = %q{activerecord_null_object}
-    s.summary = %q{Implements the Null Object Pattern for nil values in ActiveRecord associations.}
-    s.email = %q{info@westarete.com}
-    s.homepage = %q{http://github.com/westarete/activerecord_null_object/}
-    s.description = ""
-    s.authors = ["Scott Woods", "Alessandro Berardi"]
-  end
-rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+desc "Generate SimpleCov test coverage and open in your browser"
+task :coverage do
+  ENV['COVERAGE'] = 'true'
+  Rake::Task['spec'].invoke
 end

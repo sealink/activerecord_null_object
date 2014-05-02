@@ -1,5 +1,0 @@
-= ActiveRecordWithNullObject
-
-Implements the Null Object Pattern for nil values in ActiveRecord associations.
-
-Copyright (c) 2009 West Arete Computing, Inc., released under the MIT license

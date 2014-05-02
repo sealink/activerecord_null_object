@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+script: "bundle exec rake coverage"
+gemfile:
+  - gemfiles/rails3.gemfile
+  - gemfiles/rails4.gemfile
+notifications:
+  email:
+    - support@travellink.com.au
+  flowdock: e69dcafad1fea15c6b8c76e9ced965af

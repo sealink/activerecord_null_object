@@ -1,18 +1,46 @@
 require 'rubygems'
+require 'bundler/setup'
 require 'active_record'
 require 'yaml'
 require 'rspec'
-require File.dirname(__FILE__) + '/../lib/activerecord_null_object.rb'
 
-# Establish database connection.
-config = YAML::load(File.open(File.dirname(__FILE__) + '/database.yml'))
-ActiveRecord::Base.establish_connection(config['test'])
-load(File.dirname(__FILE__) + "/schema.rb")
+MINIMUM_COVERAGE = 100
+
+if ENV['COVERAGE']
+  require 'simplecov'
+  require 'coveralls'
+  Coveralls.wear!
+
+  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+  SimpleCov.start do
+    add_filter '/vendor/'
+    add_filter '/spec/'
+    add_group 'lib', 'lib'
+  end
+  SimpleCov.at_exit do
+    SimpleCov.result.format!
+    percent = SimpleCov.result.covered_percent
+    unless percent >= MINIMUM_COVERAGE
+      puts "Coverage must be above #{MINIMUM_COVERAGE}%. It is #{"%.2f" % percent}%"
+      Kernel.exit(1)
+    end
+  end
+end
+
+require 'activerecord_null_object'
 
 # Fixes 'address'.singularize  # => 'addres'
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.singular(/ess$/i, 'ess')
 end
+
+DB_FILE = 'tmp/test_db'
+FileUtils.mkdir_p File.dirname(DB_FILE)
+FileUtils.rm_f DB_FILE
+
+ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database => DB_FILE
+
+load('spec/schema.rb')
 
 class Account < ActiveRecord::Base
 end
@@ -44,4 +72,3 @@ end
 class Session < ActiveRecord::Base
   belongs_to :author
 end
-

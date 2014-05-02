@@ -1,4 +1,4 @@
-.DS_Store
-test.db
 pkg
-vendor/ruby
+coverage
+Gemfile.lock
+tmp
