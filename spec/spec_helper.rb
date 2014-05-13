@@ -4,6 +4,8 @@ require 'active_record'
 require 'yaml'
 require 'rspec'
 
+I18n.enforce_available_locales = true if I18n.respond_to? :enforce_available_locales=
+
 MINIMUM_COVERAGE = 100
 
 if ENV['COVERAGE']
