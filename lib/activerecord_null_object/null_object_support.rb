@@ -45,9 +45,12 @@ module ActiveRecordNullObject
       end
       
       # Add a :null_object option to belongs_to.
-      def belongs_to_with_null_object(name, options = {}) #:nodoc:
+      def belongs_to_with_null_object(*args)
+        options = args.extract_options!
+        name, scope = *args
+        args << options.except(:null_object)
         # Call the real belongs_to so that the association gets defined.
-        belongs_to_without_null_object(name, options.except(:null_object))
+        belongs_to_without_null_object(*args)
 
         # Modify the association if need be.
         if options[:null_object]
@@ -56,9 +59,12 @@ module ActiveRecordNullObject
       end
 
       # Add a :null_object option to has_one.
-      def has_one_with_null_object(name, options = {}) #:nodoc:
+      def has_one_with_null_object(*args)
+        options = args.extract_options!
+        name, scope = *args
+        args << options.except(:null_object)
         # Call the real belongs_to so that the association gets defined.
-        has_one_without_null_object(name, options.except(:null_object))
+        has_one_without_null_object(*args)
 
         # Modify the association if need be.
         if options[:null_object]

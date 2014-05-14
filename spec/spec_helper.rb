@@ -59,12 +59,20 @@ class Author < ActiveRecord::Base
   has_many :comments
   has_many :sessions
   has_one  :profile
-  has_one  :account, :null_object => false
+  if ::ActiveRecord::VERSION::MAJOR == 4
+    has_one :account, -> {order :created_at}, :null_object => false
+  else
+    has_one :account, :null_object => false
+  end
   has_one  :address, :null_object => true
 end
 
 class Comment < ActiveRecord::Base
-  belongs_to :author, :null_object => true
+  if ::ActiveRecord::VERSION::MAJOR == 4
+    belongs_to :author, -> {order :name}, :null_object => true
+  else
+    belongs_to :author, :null_object => true
+  end
 end
 
 class Post < ActiveRecord::Base
