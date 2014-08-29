@@ -4,15 +4,6 @@ module ActiveRecordNullObject
   module NullObjectSupport
     extend ActiveSupport::Concern
 
-    included do
-      class_eval do
-        class << self
-          alias_method_chain :belongs_to, :null_object
-          alias_method_chain :has_one, :null_object
-        end
-      end
-    end
-
     module ClassMethods
       
       # Add null object support to the given accessor method.
@@ -37,20 +28,19 @@ module ActiveRecordNullObject
         # Modify the "getter" of the relationship to return an
         # instance of the association's null object instead of returning nil.
         class_eval do
-          define_method("#{name}_with_null_object".to_sym) do
-            send("#{name}_without_null_object".to_sym) || null_class.instance
+          define_method("#{name}".to_sym) do |*args|
+            super(*args) || null_class.instance
           end
-          alias_method_chain name, :null_object
         end
       end
       
       # Add a :null_object option to belongs_to.
-      def belongs_to_with_null_object(*args)
+      def belongs_to(*args)
         options = args.extract_options!
         name, scope = *args
         args << options.except(:null_object)
         # Call the real belongs_to so that the association gets defined.
-        belongs_to_without_null_object(*args)
+        super(*args)
 
         # Modify the association if need be.
         if options[:null_object]
@@ -59,12 +49,12 @@ module ActiveRecordNullObject
       end
 
       # Add a :null_object option to has_one.
-      def has_one_with_null_object(*args)
+      def has_one(*args)
         options = args.extract_options!
         name, scope = *args
         args << options.except(:null_object)
         # Call the real belongs_to so that the association gets defined.
-        has_one_without_null_object(*args)
+        super(*args)
 
         # Modify the association if need be.
         if options[:null_object]
