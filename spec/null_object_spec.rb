@@ -18,14 +18,14 @@ describe NullAuthor do
   it { should be_new_record }
 
   context "when saving with save" do
-    its(:save) { should be_false }
+    its(:save) { should be false }
 
     it "should not create a new record" do
       expect { null_author.save }.to_not change { NullAuthor.count }
     end
-    
+
     it "should add an error" do
-      null_author.errors[:base].should == ["is a null object and can't be saved"]
+      expect(null_author.errors[:base]).to eq ["is a null object and can't be saved"]
     end
   end
 
@@ -33,7 +33,7 @@ describe NullAuthor do
     it "should raise an exception" do
       expect { null_author.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
-    
+
     it "should not create a new record" do
       expect {
         begin
@@ -44,24 +44,24 @@ describe NullAuthor do
     end
 
     it "should add an error" do
-      null_author.errors[:base].should == ["is a null object and can't be saved"]
+      expect(null_author.errors[:base]).to eq ["is a null object and can't be saved"]
     end
   end
 
   context "when updating attributes" do
     it "should return false" do
-      null_author.update_attributes({}).should be_false
+      expect(null_author.update_attributes({})).to be false
     end
-    
+
     it "should not create a new record" do
       expect { null_author.update_attributes({}) }.to_not change { NullAuthor.count }
     end
 
     it "should add an error" do
-      null_author.errors[:base].should == ["is a null object and can't be saved"]
+      expect(null_author.errors[:base]).to eq ["is a null object and can't be saved"]
     end
   end
 
   its(:name) { should be_nil }
-  
+
 end

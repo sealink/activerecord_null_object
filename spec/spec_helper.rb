@@ -3,6 +3,7 @@ require 'bundler/setup'
 require 'active_record'
 require 'yaml'
 require 'rspec'
+require 'rspec/its'
 
 I18n.enforce_available_locales = true if I18n.respond_to? :enforce_available_locales=
 
@@ -81,4 +82,8 @@ end
 
 class Session < ActiveRecord::Base
   belongs_to :author
+end
+
+RSpec.configure do |config|
+  config.raise_errors_for_deprecations!
 end
