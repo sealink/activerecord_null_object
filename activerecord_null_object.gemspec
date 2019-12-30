@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "activerecord_null_object"
-  spec.version       = "0.3.0"
+  spec.version       = ActiveRecordNullObject::VERSION
   spec.authors       = ["Scott Woods", "Alessandro Berardi"]
   spec.email         = ["support@travellink.com.au"]
   spec.description   = %q{Implements the Null Object Pattern for nil values in ActiveRecord associations.}
@@ -16,8 +16,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "activesupport", ">= 5.0", "<= 7"
-  spec.add_runtime_dependency "activerecord", ">= 5.0", "<= 7"
+  spec.add_runtime_dependency "activesupport", ">= 5.0", "< 7"
+  spec.add_runtime_dependency "activerecord", ">= 5.0", "< 7"
   spec.add_development_dependency "bundler", "~> 2"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
