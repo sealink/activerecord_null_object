@@ -50,11 +50,11 @@ describe NullAuthor do
 
   context "when updating attributes" do
     it "should return false" do
-      expect(null_author.update_attributes({})).to be false
+      expect(null_author.update({})).to be false
     end
 
     it "should not create a new record" do
-      expect { null_author.update_attributes({}) }.to_not change { NullAuthor.count }
+      expect { null_author.update({}) }.to_not change { NullAuthor.count }
     end
 
     it "should add an error" do
