@@ -8,22 +8,29 @@ module ActiveRecordNullObject
       validate :unsavable
     end
 
-  
-    def id 
+    def id
       nil
     end
-  
+
     def nil?
       true
     end
-    
+
     def empty?
       true
+    end
+
+    def blank?
+      true
+    end
+
+    def present?
+      false
     end
 
     def unsavable
       errors.add(:base, "is a null object and can't be saved")
     end
-  
+
   end
 end

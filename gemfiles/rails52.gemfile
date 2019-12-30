@@ -1,0 +1,8 @@
+source :rubygems
+gemspec :path => '../'
+
+group :development, :test do
+  gem 'activesupport', '~> 5.2'
+  gem 'activerecord', '~> 5.2'
+  gem 'actionpack', '~> 5.2'
+end
