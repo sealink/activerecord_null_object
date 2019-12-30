@@ -1,7 +1,6 @@
-# -*- encoding: utf-8 -*-
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'activerecord_null_object/version'
+# frozen_string_literal: true
+
+require File.expand_path('lib/activerecord_null_object/version', __dir__)
 
 Gem::Specification.new do |spec|
   spec.name          = "activerecord_null_object"
