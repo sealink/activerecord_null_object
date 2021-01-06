@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "activesupport", ">= 5.0", "< 7"
-  spec.add_runtime_dependency "activerecord", ">= 5.0", "< 7"
+  spec.add_runtime_dependency "activesupport", ">= 6.0", "< 7"
+  spec.add_runtime_dependency "activerecord", ">= 6.0", "< 7"
   spec.add_development_dependency "bundler", "~> 2"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
@@ -28,5 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov-rcov"
   spec.add_development_dependency "coveralls"
   spec.add_development_dependency 'sqlite3'
-  spec.add_development_dependency 'travis'
+  spec.add_development_dependency 'pry-byebug'
 end

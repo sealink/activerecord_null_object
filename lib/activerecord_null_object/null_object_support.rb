@@ -5,7 +5,7 @@ module ActiveRecordNullObject
     extend ActiveSupport::Concern
 
     module ClassMethods
-      
+
       # Add null object support to the given accessor method.
       def add_null_object_support(name, options = {}) #:nodoc:
         # Determine the class of the association.
@@ -33,14 +33,12 @@ module ActiveRecordNullObject
           end
         end
       end
-      
+
       # Add a :null_object option to belongs_to.
-      def belongs_to(*args)
-        options = args.extract_options!
-        name, scope = *args
-        args << options.except(:null_object)
+      def belongs_to(name, scope = nil, **options)
+        # args << options.except(:null_object)
         # Call the real belongs_to so that the association gets defined.
-        super(*args)
+        super(name, scope, **options.except(:null_object))
 
         # Modify the association if need be.
         if options[:null_object]
@@ -49,12 +47,11 @@ module ActiveRecordNullObject
       end
 
       # Add a :null_object option to has_one.
-      def has_one(*args)
-        options = args.extract_options!
-        name, scope = *args
-        args << options.except(:null_object)
+      def has_one(name, scope = nil, **options)
+        # args = options.except(:null_object)
+
         # Call the real belongs_to so that the association gets defined.
-        super(*args)
+        super(name, scope, **options.except(:null_object))
 
         # Modify the association if need be.
         if options[:null_object]
