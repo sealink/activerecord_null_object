@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## 0.5.0
 
 - [TT-8620] Update to build with github actions / ruby 3.0 / Rails 6.1
 
