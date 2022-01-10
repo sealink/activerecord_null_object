@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.0 Unreleased
+
+- [PLAT-183] Ruby 3.0, Rails 7 and coveralls github action
+
 ## 0.5.0
 
 - [TT-8620] Update to build with github actions / ruby 3.0 / Rails 6.1
