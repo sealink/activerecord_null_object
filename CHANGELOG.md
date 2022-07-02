@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.7.0
+
+- [PLAT-383] Improve boottime by lazy loading extension
+
 ## 0.6.0
 
 - [PLAT-183] Ruby 3.0, Rails 7 and coveralls github action
