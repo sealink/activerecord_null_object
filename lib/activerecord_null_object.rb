@@ -4,4 +4,6 @@ require 'activerecord_null_object/version'
 require 'activerecord_null_object/null_object'
 require 'activerecord_null_object/null_object_support'
 
-ActiveRecord::Base.send :include, ActiveRecordNullObject::NullObjectSupport
+ActiveSupport.on_load(:active_record) do
+  ActiveRecord::Base.send :include, ActiveRecordNullObject::NullObjectSupport
+end
