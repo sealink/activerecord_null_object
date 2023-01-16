@@ -1,5 +1,9 @@
 # Change Log
 
+## Unreleased
+
+- [PLAT-1175] Update to Ruby 3.2
+
 ## 0.7.0
 
 - [PLAT-383] Improve boottime by lazy loading extension
@@ -14,5 +18,5 @@
 
 ## 0.4.0
 
-* Use coverage kit to enforce maximum coverage
-* [TT-6631] Fix present? and blank? checks on Rails6
+- Use coverage kit to enforce maximum coverage
+- [TT-6631] Fix present? and blank? checks on Rails6
