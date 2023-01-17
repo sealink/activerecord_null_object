@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## 0.8.0
 
 - [PLAT-1175] Update to Ruby 3.2
 
